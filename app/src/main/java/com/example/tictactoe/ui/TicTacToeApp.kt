@@ -50,7 +50,7 @@ fun TicTacToeApp(modifier: Modifier = Modifier) {
                     .padding(horizontal = dimensionResource(id = R.dimen.padding_medium)),
                     gameViewModel = gameViewModel,
                     onStartGameButtonClicked = {
-                        if (gameViewModel.lunchGame()) navController.navigate(TicTacToeScreen.Game.name)
+                        if (gameViewModel.launchGame()) navController.navigate(TicTacToeScreen.Game.name)
                     }
                     )
             }

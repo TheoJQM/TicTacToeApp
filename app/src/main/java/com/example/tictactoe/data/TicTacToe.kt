@@ -37,6 +37,9 @@ class TicTacToe {
         }
     }
 
+    /**
+     * Reset the game : empty the grid and redefined the state of the game to GAMENOTFINISHED
+     */
     fun resetGame() {
         loadGameGrid()
         state = State.GAMENOTFINISHED
@@ -59,16 +62,19 @@ class TicTacToe {
      * @param x : The chosen line
      * @param y : The chosen column
      */
-    fun updateGrid(x: Int, y: Int): String {
+    fun updateGrid(x: Int, y: Int) {
         grid[x][y] = symbol
         symbol = if (symbol == 'X') 'O' else 'X'
-        return checkState()
     }
 
     /**
      * Check the current state of the grid
+     * @return the state of the game, either :
+     * "" -> The game is not finished
+     * "Draw" -> The game is finished and it's a draw
+     * "Win" -> The game is finished and one of the player has won
      */
-    private fun checkState(): String {
+    fun checkState(): String {
         val (xCount, oCount) = countXAndO()
         val diagonal = checkDiagonal()
         val vertical = checkVertical()

@@ -186,17 +186,15 @@ fun GameGrid(
                         shape = MaterialTheme.shapes.small,
                         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background)
                     ) {
-                        if (gameViewModel.isFilled(index)) {
-                            Text(
-                                text = gameViewModel.getSymbol(index),
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .wrapContentHeight(Alignment.CenterVertically),
-                                textAlign = TextAlign.Center,
-                                style = MaterialTheme.typography.displayLarge
+                        Text(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .wrapContentHeight(Alignment.CenterVertically),
+                            text = gameViewModel.getSymbol(index),
+                            textAlign = TextAlign.Center,
+                            style = MaterialTheme.typography.displayLarge
 
-                            )
-                        }
+                        )
 
                     }
                 }

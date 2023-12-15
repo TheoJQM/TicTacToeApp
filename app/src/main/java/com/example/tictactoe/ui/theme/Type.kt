@@ -10,7 +10,8 @@ import com.example.tictactoe.R
 
 private val Teko = FontFamily(
     Font(R.font.teko_regular, FontWeight.Normal),
-    Font(R.font.teko_bold, FontWeight.Bold)
+    Font(R.font.teko_bold, FontWeight.Bold),
+    Font(R.font.teko_light, FontWeight.Light)
 )
 
 // Set of Material typography styles to start with
