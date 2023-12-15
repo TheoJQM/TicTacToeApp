@@ -3,12 +3,12 @@ package com.example.tictactoe.data
 import kotlin.math.abs
 
 // Every state possible for the Tic-Tac-Toe game
-enum class State(val meaning: String) {
-    GAMENOTFINISHED("Game not finished"),
-    DRAW("Draw"),
-    XWINS("X wins"),
-    OWINS("O wins"),
-    IMPOSSIBLE("Impossible")
+enum class State {
+    GAMENOTFINISHED,
+    DRAW,
+    XWINS,
+    OWINS,
+    IMPOSSIBLE
 }
 
 class TicTacToe {
@@ -23,7 +23,7 @@ class TicTacToe {
     private var symbol = 'X'
 
     init {
-        loadGameGrid()
+        resetGame()
     }
 
     /**
@@ -35,6 +35,11 @@ class TicTacToe {
                 grid[i][j] = '_'
             }
         }
+    }
+
+    fun resetGame() {
+        loadGameGrid()
+        state = State.GAMENOTFINISHED
     }
 
 

@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -34,16 +36,13 @@ import com.example.tictactoe.ui.theme.TicTacToeTheme
 @Composable
 fun GameScreen(
     modifier: Modifier = Modifier,
-    contentPadding: PaddingValues,
     gameViewModel: GameViewModel = viewModel()
 ) {
 
     val gameUiState = gameViewModel.uiState.collectAsState()
 
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(top = contentPadding.calculateTopPadding() + dimensionResource(id = R.dimen.padding_extra_large)),
+        modifier = modifier,
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -59,8 +58,7 @@ fun GameScreen(
 
         GameContent(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(dimensionResource(id = R.dimen.padding_medium)),
+                .fillMaxWidth(),
             gameViewModel
         )
     }
@@ -137,6 +135,25 @@ fun GameContent(
                     style = MaterialTheme.typography.displayMedium
                 )
             }
+
+            Spacer(modifier = Modifier.weight(1F))
+
+            Button(
+                onClick = { gameViewModel.resetGame() },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = dimensionResource(id = R.dimen.padding_large))
+                    .padding(bottom = dimensionResource(id = R.dimen.padding_medium)),
+                shape = MaterialTheme.shapes.small,
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
+            ) {
+                Text(
+                    text = stringResource(id = R.string.restart),
+                    style = MaterialTheme.typography.displayMedium,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer
+                )
+                
+            }
         }
 
 
@@ -192,6 +209,6 @@ fun GameGrid(
 @Composable
 fun GameScreenPreview() {
     TicTacToeTheme {
-        GameScreen(contentPadding = PaddingValues(32.dp))
+        GameScreen()
     }
 }

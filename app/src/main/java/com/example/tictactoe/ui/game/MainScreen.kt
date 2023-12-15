@@ -2,7 +2,6 @@ package com.example.tictactoe.ui.game
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
@@ -15,9 +14,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -32,14 +28,13 @@ import com.example.tictactoe.ui.theme.TicTacToeTheme
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
+    onStartGameButtonClicked: () -> Unit,
     gameViewModel: GameViewModel = viewModel()
 ) {
     val gameUiState by gameViewModel.uiState.collectAsState()
 
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(horizontal = dimensionResource(id = R.dimen.padding_medium)),
+        modifier = modifier,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -78,7 +73,7 @@ fun MainScreen(
         )
 
         Button(
-            onClick = { gameViewModel.checkNames() },
+            onClick = { onStartGameButtonClicked() },
             shape = MaterialTheme.shapes.small,
             colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primaryContainer),
             modifier = Modifier
@@ -100,6 +95,6 @@ fun MainScreen(
 @Composable
 fun MainScreenPreview() {
     TicTacToeTheme {
-        MainScreen()
+        MainScreen( onStartGameButtonClicked = {})
     }
 }

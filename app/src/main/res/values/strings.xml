@@ -6,12 +6,13 @@
     <string name="placeholder_input_player">Ecrivez un nom</string>
     <string name="button_start_game">Commencer le jeu</string>
 
-    <string name="display_player_one_name">X  %s</string>
-    <string name="display_player_two_name">O  %s</string>
+    <string name="display_player_one_name">X | %s</string>
+    <string name="display_player_two_name">%s | O</string>
     <string name="versus">VS</string>
 
     <string name="choose_cell">%s, Choisissez une case vide</string>
     <string name="player_won">%s a gagné</string>
     <string name="draw">C\'est match nul</string>
+    <string name="restart">Recommencer</string>
 
 </resources>

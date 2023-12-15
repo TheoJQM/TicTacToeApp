@@ -1,6 +1,5 @@
 package com.example.tictactoe.ui.game
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.tictactoe.data.TicTacToe
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -9,9 +8,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 data class GameUiState(
-    val player1: String = "Alpha",
-    val player2: String = "Gamma",
-    val currPlayer: String = "Alpha",
+    val player1: String = "",
+    val player2: String = "",
+    val currPlayer: String = "",
     val symbol: String = "X",
     val result: String = "",
     val isGameOver: Boolean = false
@@ -46,10 +45,6 @@ class GameViewModel: ViewModel() {
         return filledCells.find{ it.first == index }!!.second
     }
 
-    fun checkNames(): Boolean {
-        return !(_uiState.value.player1 != "" && _uiState.value.player2 != "")
-    }
-
     fun checkMove(index: Int) {
         val result: String
         if (!_uiState.value.isGameOver) {
@@ -80,13 +75,21 @@ class GameViewModel: ViewModel() {
     }
 
     private fun updateGame(result: String) {
-        Log.e("list", result)
         when (result) {
             "" -> {
                 updateCurrentPlayer()
                 updateSymbol()
             }
             "Draw", "Win" -> _uiState.update { currState -> currState.copy(result = result, isGameOver = true) }
+        }
+    }
+
+    fun lunchGame(): Boolean {
+        return if (_uiState.value.player1 != "" && _uiState.value.player2 != "") {
+            resetGame()
+            true
+        } else {
+            false
         }
     }
 
@@ -110,8 +113,18 @@ class GameViewModel: ViewModel() {
         }
     }
 
-    private fun resetGame() {
+    fun resetGame() {
         filledCells.clear()
-        currPlayer = _uiState.value.player1
+        currPlayer = ""
+        game.resetGame()
+        _uiState.update { currState ->
+            currState.copy(
+                symbol = "X",
+                result = "",
+                isGameOver= false,
+                currPlayer = ""
+            )
+        }
+        updateCurrentPlayer()
     }
 }
