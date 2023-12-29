@@ -82,11 +82,6 @@ fun PlayerInformation(
         )
 
         Text(
-            text = stringResource(id = R.string.versus),
-            style = MaterialTheme.typography.displayMedium
-        )
-
-        Text(
             text = String.format(stringResource(id = R.string.display_player_two_name), player2),
             style = MaterialTheme.typography.displayMedium
         )

@@ -25,6 +25,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tictactoe.R
 import com.example.tictactoe.ui.theme.TicTacToeTheme
 
+private const val MAXCHAR = 10
+
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
@@ -47,7 +49,7 @@ fun MainScreen(
                     style = MaterialTheme.typography.bodyMedium
                 ) },
             leadingIcon = { Icon(painter = painterResource(id = R.drawable.ic_player), contentDescription = "Icon of a player")},
-            onValueChange = { gameViewModel.updatePlayerName(Pair(1, it)) },
+            onValueChange = {  if (it.length <= MAXCHAR) gameViewModel.updatePlayerName(Pair(1, it)) },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
             modifier = Modifier
                 .fillMaxWidth()
@@ -64,7 +66,7 @@ fun MainScreen(
                     style = MaterialTheme.typography.bodyMedium
                     ) },
             leadingIcon = { Icon(painter = painterResource(id = R.drawable.ic_player), contentDescription = "Icon of a player")},
-            onValueChange = { gameViewModel.updatePlayerName(Pair(2, it)) },
+            onValueChange = { if (it.length <= 10) gameViewModel.updatePlayerName(Pair(2, it)) },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
             modifier = Modifier
                 .fillMaxWidth()
